@@ -7,6 +7,11 @@ on:
   # Optional: Allow manual trigger
   workflow_dispatch:
 
+# Add permissions block
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-xmltv:
     runs-on: ubuntu-latest
@@ -14,6 +19,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Ensure we have the full git history
+          fetch-depth: 0
+          # Use token with write permissions
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -26,22 +36,20 @@ jobs:
       - name: Run XMLTV update script
         run: bun run modifier.ts
 
-      - name: Configure Git
+      - name: Commit and push changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Commit and push if changed
-        run: |
-          if git diff --quiet updated_epg.xml.gz; then
-            echo "No changes to commit"
-          else
+          # Check if there are changes
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Changes detected. Committing and pushing..."
             git add updated_epg.xml.gz
             git commit -m "Update XMLTV channel mappings [automated]"
-            git push
+            git push origin HEAD:${GITHUB_REF}
+          else
+            echo "No changes to commit"
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
