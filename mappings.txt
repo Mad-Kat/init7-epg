@@ -1,0 +1,274 @@
+Fetching XMLTV data...
+Fetching M3U data...
+XML Structure: {
+  "?xml": {
+    "@_version": "1.0",
+    "@_encoding": "UTF-8"
+  },
+  "tv": {
+    "channel": [
+      {
+        "display-name": [
+          {
+            "#text": "SRF 1",
+            "@_lang": "de"
+          },
+          {
+            "#text": "SRF 1",
+            "@_lang": "fr"
+          },
+          {
+            "#text": "SRF 1",
+            "@_lang": "it"
+          }
+        ],
+        "icon": {
+          "@_src": "https://api.tv.init7.net/media/logos/1102_SRF1.ch.png"
+        },
+        "@_id": "srf1"
+      },
+      {
+        "display-name": [
+          {
+            "#text": "SRF zwei",
+            "@_lang": "de"
+          },
+          {
+            "#text": "SRF zwei",
+            "@_lang": "fr"
+          },
+          {
+            "#text": "SRF zwei",
+            "@_lang": "it"
+          }
+        ],
+        "icon": {
+          "@_src": "https://api.tv.init7.net/media/logos/1104_SRFzwei.ch.png"
+        },
+        "@_id": "srfzwei"
+      },
+      {
+        "display-name": [
+   
+
+Channel Mappings:
+
+const channelMappings: Record<string, string> = {
+    '3+': '', // 3+ HD (NO MATCH FOUND)
+    '3sat': '3sat.de', // 3Sat => 3sat
+    '4+': '', // 4+ HD (NO MATCH FOUND)
+    '5star': '5STAR.uk', // 5 STAR => 5STAR
+    '5usa': '5USA.uk', // 5 USA => 5USA
+    '5+': '5Plus.ch', // 5+ => 5Plus
+    '6+': '6Plus.ch', // 6+ => 6Plus
+    '6ter': '6terSwitzerland.ch', // 6ter => 6terSwitzerland
+    '7+/nickch': '', // 7+/ Nick CH (NO MATCH FOUND)
+    'aljazeeraenglish': 'AlJazeera.qa', // Al Jazeera English => AlJazeera
+    'anixe': 'AnixeHDSerie.de', // ANIXE => AnixeHDSerie
+    'ardalpha': 'ARDalpha.de', // ARD alpha => ARDalpha
+    'arted': 'arte.de', // arte D => arte
+    'artef': 'arte.de', // arte F => arte
+    'auftanken.tv': 'AuftankenTV.ch', // auftanken.TV => AuftankenTV
+    'bbcnews': 'BBCNews.uk', // BBC News => BBCNews
+    'bbcone': 'BBCOne.uk', // BBC One => BBCOne
+    'bbctwo': 'BBCTwo.uk', // BBC Two => BBCTwo
+    'bbcworldnews': '', // BBC World News (NO MATCH FOUND)
+    'bfmtv': 'BFMTV.fr', // BFM TV => BFMTV
+    'bibeltv': 'BibelTV.de', // Bibel TV => BibelTV
+    'bloombergtv': 'BloombergTVEurope.uk', // Bloomberg TV => BloombergTVEurope
+    'bluezoomd': 'BlueZoomD.ch', // blue Zoom D => BlueZoomD
+    'bluezoomf': 'BlueZoomF.ch', // blue Zoom F => BlueZoomF
+    'bn': 'BNTV.ba', // BN => BNTV
+    'boing': 'Boing.it', // Boing => Boing
+    'brfernsehensüd': '', // BR Fernsehen Süd (NO MATCH FOUND)
+    'bvntv': 'BVN.nl', // BVN TV => BVN
+    'canal24horas': '24Horas.es', // Canal 24 Horas => 24Horas
+    'canalalphaju': 'CanalAlphaJU.ch', // Canal Alpha JU => CanalAlphaJU
+    'canalalphane': 'CanalAlphaNE.ch', // Canal Alpha NE => CanalAlphaNE
+    'canal+enclair': '', // CANAL+ en clair (NO MATCH FOUND)
+    'canal8': '', // Canal8 (NO MATCH FOUND)
+    'canale5': 'Canale5.it', // Canale5 => Canale5
+    'carac1': '', // CARAC 1 (NO MATCH FOUND)
+    'carac2': '', // CARAC 2 (NO MATCH FOUND)
+    'carac3': '', // CARAC 3 (NO MATCH FOUND)
+    'cartoonito': 'Cartoonito.it', // Cartoonito => Cartoonito
+    'cbbc': 'CBBC.uk', // CBBC => CBBC
+    'cbeebies': 'CBeebies.uk', // Cbeebies => CBeebies
+    'channel4': 'Channel4.uk', // Channel 4 => Channel4
+    'channel5': 'Channel5.uk', // Channel 5 => Channel5
+    'cine34': 'Cine34.it', // Cine34 => Cine34
+    'cnbc': 'CNBCEurope.uk', // CNBC => CNBCEurope
+    'cnninternational': 'CNNInternationalEurope.us', // CNN International => CNNInternationalEurope
+    'cnntürk': '', // CNN Türk (NO MATCH FOUND)
+    'comedycentral': 'ComedyCentral.de', // Comedy Central => ComedyCentral
+    'daserste': 'DasErste.de', // Das Erste => DasErste
+    'deejaytv': 'DeejayTV.it', // Deejay TV => DeejayTV
+    'deluxemusic': 'DeluxeMusic.de', // Deluxe Music => DeluxeMusic
+    'disneychannel': 'DisneyChannel.de', // Disney Channel => DisneyChannel
+    'dmax': 'DMAX.de', // DMAX => DMAX
+    'dmaxitalia': 'DMAX.de', // DMAX italia => DMAX
+    'dokusat': '', // DOKUSAT (NO MATCH FOUND)
+    'dreamtürk': '', // Dream Türk (NO MATCH FOUND)
+    'dunatv': 'Duna.hu', // Duna TV => Duna
+    'dweurope': '', // DW Europe (NO MATCH FOUND)
+    'e4': 'E4.uk', // E4 => E4
+    'eurod': 'EuroD.tr', // Euro D => EuroD
+    'euronewsd': 'One.de', // euronews D => One
+    'euronewse': 'EuronewsEnglish.fr', // euronews E => EuronewsEnglish
+    'euronewsf': 'EuronewsFrench.fr', // euronews F => EuronewsFrench
+    'euronewsi': 'EuronewsItalian.fr', // euronews I => EuronewsItalian
+    'eurosport1': 'Eurosport1.de', // Eurosport 1 => Eurosport1
+    'eurostar': 'EuroStar.tr', // Eurostar => EuroStar
+    'fashiontv': 'FashionTVEurope.fr', // Fashion TV => FashionTVEurope
+    'film4': 'Film4.uk', // Film 4 => Film4
+    'focus': 'Focus.it', // Focus => Focus
+    'france2': 'France2.fr', // France 2 => France2
+    'france24': 'France2.fr', // France 24 => France2
+    'france24e': 'France2.fr', // France 24 E => France2
+    'france3': 'France3.fr', // France 3 => France3
+    'france4': 'E4.uk', // France 4 => E4
+    'france5': 'France5.fr', // France 5 => France5
+    'frisbee': 'Frisbee.it', // frisbee => Frisbee
+    'giallo': 'Giallo.it', // Giallo => Giallo
+    'gulli': 'Gulli.fr', // Gulli => Gulli
+    'haberturk': 'Haberturk.tr', // HABERTURK => Haberturk
+    'hrfernsehen': 'hrfernsehen.de', // hr Fernsehen => hrfernsehen
+    'iris': 'Iris.it', // IRIS => Iris
+    'italia1': 'Italia1.it', // Italia 1 => Italia1
+    'itv': 'ITV1.uk', // ITV => ITV1
+    'itv2': 'ITV2.uk', // ITV 2 => ITV2
+    'itv3': 'ITV3.uk', // ITV 3 => ITV3
+    'itv4': 'ITV4.uk', // ITV 4 => ITV4
+    'k2': 'K2.it', // K2 => K2
+    'kabeleins': 'kabeleinsSchweiz.ch', // Kabel Eins (Schweiz) => kabeleinsSchweiz
+    'kabeleinsdoku': 'kabeleinsDoku.de', // Kabel Eins Doku => kabeleinsDoku
+    'kanal7avrupa': 'Kanal7.tr', // KANAL 7 AVRUPA => Kanal7
+    'kanal9': 'Kanal9.ch', // Kanal 9 => Kanal9
+    'kika': 'KiKA.de', // KiKA => KiKA
+    'la5': 'La5.it', // La 5 => La5
+    'la7': 'LA7.it', // LA 7 => LA7
+    'la7d': 'LA7.it', // La 7d => LA7
+    'latélé': '', // la télé (NO MATCH FOUND)
+    'lémanbleu': '', // léman bleu (NO MATCH FOUND)
+    'm6': 'M6Switzerland.ch', // M6 => M6Switzerland
+    'mdrsachsen': '', // MDR Sachsen (NO MATCH FOUND)
+    'meteonews.tv': 'One.de', // meteonews.TV => One
+    'more4+1': 'E4.uk', // More4+1 => E4
+    'mtv': 'MTV.de', // MTV => MTV
+    'n-tv': 'AuftankenTV.ch', // n-tv => AuftankenTV
+    'n24doku': 'N24Doku.de', // N24 Doku => N24Doku
+    'ndrfsnds': '', // NDR FS NDS (NO MATCH FOUND)
+    'nitro': 'Nitro.de', // NITRO => Nitro
+    'nove': 'Nove.it', // NOVE => Nove
+    'nrj12': 'NRJ12.fr', // NRJ 12 => NRJ12
+    'one': 'One.de', // ONE => One
+    'orf1': 'ORF1.at', // ORF 1 => ORF1
+    'orf2': 'ORF2.at', // ORF 2 => ORF2
+    'phoenix': 'phoenix.de', // Phoenix => phoenix
+    'prosieben': 'ProSiebenSchweiz.ch', // ProSieben (Schweiz) => ProSiebenSchweiz
+    'prosiebenmaxx': 'ProSiebenMaxx.de', // ProSieben MAXX => ProSiebenMaxx
+    'puls8': '', // Puls 8 (NO MATCH FOUND)
+    'radioitaliatv': 'RadioItaliaTV.it', // RadioItaliaTV => RadioItaliaTV
+    'rai1': 'Rai1.it', // Rai 1 => Rai1
+    'rai2': 'Rai2.it', // Rai 2 => Rai2
+    'rai3': 'Rai3.it', // Rai 3 => Rai3
+    'rai4': 'Rai4.it', // Rai 4 => Rai4
+    'rai5': 'Rai5.it', // Rai 5 => Rai5
+    'raigulp': 'RaiGulp.it', // Rai Gulp => RaiGulp
+    'raimovie': 'RaiMovie.it', // Rai Movie => RaiMovie
+    'rainews24': 'RaiNews24.it', // Rai News 24 => RaiNews24
+    'raipremium': 'RaiPremium.it', // Rai Premium => RaiPremium
+    'raiscuola': 'RaiScuola.it', // Rai Scuola => RaiScuola
+    'raisport+': 'RaiSportHD.it', // Rai Sport+ => RaiSportHD
+    'raistoria': 'RaiStoria.it', // Rai Storia => RaiStoria
+    'raiyoyo': 'RaiYoyo.it', // Rai yoyo => RaiYoyo
+    'rbbberlin': '', // rbb Berlin (NO MATCH FOUND)
+    'realtime': 'RealTime.it', // Real Time => RealTime
+    'rete4': 'E4.uk', // Rete 4 => E4
+    'rmcstory': 'RMCStory.fr', // RMC Story => RMCStory
+    'rsila1': 'RSILa1.ch', // RSI LA 1 => RSILa1
+    'rsila2': 'RSILa2.ch', // RSI LA 2 => RSILa2
+    'rtk1': 'RTK1.xk', // RTK 1 => RTK1
+    'rtl': 'RTL.de', // RTL (Schweiz) => RTL
+    'rtl102.5tv': 'RTL.de', // RTL 102.5 TV => RTL
+    'rtl9': 'RTL.de', // RTL 9 => RTL
+    'rtlzwei': 'RTL.de', // RTLZWEI (Schweiz) => RTL
+    'rtpint.': 'RTPInternacional.pt', // RTP Int. => RTPInternacional
+    'rts1': 'RTS1.ch', // RTS 1 => RTS1
+    'rts2': 'RTS2.ch', // RTS 2 => RTS2
+    'rtsh3': 'RTSH3.al', // RTSH 3 => RTSH3
+    'rtshsat': '', // RTSH Sat (NO MATCH FOUND)
+    's1': 'S1.ch', // S1 => S1
+    'sat.1': 'SAT1.de', // SAT.1 (Schweiz) => SAT1
+    'sat.1gold': 'SAT1.de', // SAT.1 GOLD => SAT1
+    'servustv': 'ServusTV.at', // Servus TV => ServusTV
+    'shf': '', // ShF (NO MATCH FOUND)
+    'sixx': 'sixx.de', // Sixx => sixx
+    'skynews': 'SkyNewsInternational.uk', // Sky News => SkyNewsInternational
+    'sport1': 'Sport1.de', // SPORT1 => Sport1
+    'sportitalia': 'Sportitalia.it', // Sportitalia => Sportitalia
+    'srfernsehen': 'SRFernsehen.de', // SR Fernsehen => SRFernsehen
+    'srf1': 'SRF1.ch', // SRF 1 => SRF1
+    'srfinfo': 'SRFinfo.ch', // SRF info => SRFinfo
+    'srfzwei': 'SRFzwei.ch', // SRF zwei => SRFzwei
+    'startv': 'StarTV.ch', // STAR TV => StarTV
+    'superrtl': 'RTL.de', // Super RTL (Schweiz) => RTL
+    'supertennis': 'Super.it', // Super Tennis => Super
+    'super!': 'RTLSuper.de', // Super! => RTLSuper
+    'swiss1': 'S1.ch', // SWISS 1 => S1
+    'swrbw': '', // SWR BW (NO MATCH FOUND)
+    'tagesschau24': 'tagesschau24.de', // tagesschau24 => tagesschau24
+    'tele1': 'Tele1.ch', // Tele 1 => Tele1
+    'tele5': 'TELE5.de', // Tele 5 => TELE5
+    'telebärn': '', // Tele Bärn (NO MATCH FOUND)
+    'teled': 'TeleD.ch', // Tele D => TeleD
+    'telem1': 'TeleM1.ch', // Tele M1 => TeleM1
+    'teletop': 'TeleTop.ch', // Tele Top => TeleTop
+    'téléversoix': '', // Télé Versoix (NO MATCH FOUND)
+    'telez': 'TeleZ.ch', // Tele Z => TeleZ
+    'telebasel': 'Telebasel.ch', // Telebasel => Telebasel
+    'telebielingue': 'TeleBielingue.ch', // TeleBielingue => TeleBielingue
+    'telelombardia': 'Telelombardia.it', // Telelombardia => Telelombardia
+    'teleswizz': 'TeleSwizz.ch', // Teleswizz => TeleSwizz
+    'teleticino': 'TeleTicino.ch', // TeleTicino => TeleTicino
+    'telezüri': 'TeleZ.ch', // TeleZüri => TeleZ
+    'tf1': 'TF1Switzerland.ch', // TF 1 => TF1Switzerland
+    'tfx': 'TFXSwitzerland.ch', // TFX => TFXSwitzerland
+    'tgcom24': 'TGCom24.it', // TGCOM24 => TGCom24
+    'tgrteu': 'TGRTEU.tr', // TGRT EU => TGRTEU
+    'tlc': 'TLC.de', // TLC => TLC
+    'tmcmontecarlo': 'TMC.fr', // TMC Monte Carlo => TMC
+    'toggoplus': 'TOGGOplus.de', // TOGGO plus => TOGGOplus
+    'travelxp': 'TravelXP.uk', // TravelXP => TravelXP
+    'trtcocuk': 'TRTCocuk.tr', // TRT Cocuk => TRTCocuk
+    'trthaber': 'TRTHaber.tr', // TRT Haber => TRTHaber
+    'trtspor': 'TRTSpor.tr', // TRT SPOR => TRTSpor
+    'trtturk': 'TRTTurk.tr', // TRT TURK => TRTTurk
+    'trt1': 'TRT1.tr', // TRT1 => TRT1
+    'tv24': 'TV24.ch', // TV 24 => TV24
+    'tv25': 'TV25.ch', // TV 25 => TV25
+    'tvsüdost': '', // TV Südostschweiz (NO MATCH FOUND)
+    'tvsuisseplus': 'TVSuissePlus.ch', // TV Suisse Plus => TVSuissePlus
+    'tv2000': 'TV2000.it', // TV2000 => TV2000
+    'tv4e': 'tv4e.gr', // TV4E => tv4e
+    'tv5mondeeurope': '', // TV5MONDE Europe (NO MATCH FOUND)
+    'tvcgmne': 'TVCG.me', // TVCG MNE => TVCG
+    'tveint.': 'TVEInternacionalEuropeAsia.es', // TVE Int. => TVEInternacionalEuropeAsia
+    'tvm3': 'TVM3.ch', // TVM3 => TVM3
+    'tvo': 'TVO.ch', // TVO => TVO
+    'tvppolonia': 'TVPPolonia.pl', // TVP Polonia => TVPPolonia
+    'tvrinternational': 'TVRInternational.ro', // TVR International => TVRInternational
+    'vox': 'VOX.de', // VOX (Schweiz) => VOX
+    'w9': 'W9Switzerland.ch', // W9 => W9Switzerland
+    'wdrfernsehen': 'WDRFernsehenKoln.de', // WDR Fernsehen => WDRFernsehenKoln
+    'welt': 'WELT.de', // WELT => WELT
+    'zdf': 'ZDF.de', // ZDF => ZDF
+    'zdfinfo': 'ZDFinfo.de', // ZDFinfo => ZDFinfo
+    'zdfneo': 'ZDFneo.de', // ZDFneo => ZDFneo
+};
+
+Statistics:
+Total XMLTV channels: 211
+Matched channels: 184
+Unmatched channels: 27
+Match rate: 87.2%
