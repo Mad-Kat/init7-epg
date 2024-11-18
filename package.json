@@ -1,7 +1,10 @@
 {
   "name": "bun-xmltv",
-  "module": "index.ts",
+  "module": "mappings.ts",
   "type": "module",
+  "scripts": {
+    "update": "bun run modifier.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

@@ -1,5 +1,5 @@
 import { XMLBuilder, XMLParser } from "fast-xml-parser";
-import { gunzipSync } from "zlib";
+import { gunzipSync, gzipSync } from "zlib";
 
 // Manual corrections and mappings for all channels
 const channelMappings: Record<string, string> = {
@@ -279,6 +279,12 @@ async function fetchM3u(url: string): Promise<string> {
   return await response.text();
 }
 
+// Function to write gzipped content
+async function writeGzippedFile(content: string, outputPath: string) {
+  const compressed = gzipSync(Buffer.from(content));
+  await Bun.write(outputPath, compressed);
+}
+
 // Function to process and update the XMLTV file
 async function updateXmltvIds(
   xmltvUrl: string,
@@ -345,8 +351,9 @@ async function updateXmltvIds(
     });
     const updatedXml = builder.build({ tv: tvContent });
 
-    // Write result to file
-    await Bun.write(outputPath, updatedXml);
+    // Write gzipped result
+    console.log("Compressing and writing output file...");
+    await writeGzippedFile(updatedXml, outputPath);
 
     // Print statistics
     console.log("\nUpdate Statistics:");
@@ -362,7 +369,21 @@ async function updateXmltvIds(
       unmappedChannels.forEach((id) => console.log(`- ${id}`));
     }
 
-    console.log(`\nUpdated XMLTV file has been saved to: ${outputPath}`);
+    // Get file sizes for comparison
+    const originalSize = Buffer.from(xmltvContent).length;
+    const compressedSize = await Bun.file(outputPath).size;
+
+    console.log("\nFile size information:");
+    console.log(`Original size: ${(originalSize / 1024 / 1024).toFixed(2)} MB`);
+    console.log(
+      `Compressed size: ${(compressedSize / 1024 / 1024).toFixed(2)} MB`,
+    );
+    console.log(
+      `Compression ratio: ${((1 - compressedSize / originalSize) * 100).toFixed(1)}%`,
+    );
+    console.log(
+      `\nUpdated and compressed XMLTV file has been saved to: ${outputPath}`,
+    );
   } catch (error) {
     console.error("Error:", error);
     console.error("Details:", error.stack);
@@ -373,7 +394,7 @@ async function updateXmltvIds(
 const xmltvUrl =
   "https://github.com/mathewmeconry/TV7_EPG_Data/raw/master/tv7_init7_epg.xml.gz";
 const m3uUrl = "https://api.init7.net/tvchannels.m3u";
-const outputPath = "updated_epg.xml";
+const outputPath = "updated_epg.xml.gz"; // Added .gz extension
 
 // Run the update
 updateXmltvIds(xmltvUrl, m3uUrl, outputPath);
